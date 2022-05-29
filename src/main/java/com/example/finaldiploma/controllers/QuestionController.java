@@ -1,5 +1,6 @@
 package com.example.finaldiploma.controllers;
 
+import com.example.finaldiploma.model.Category;
 import com.example.finaldiploma.model.Product;
 import com.example.finaldiploma.model.Question;
 import com.example.finaldiploma.service.ProductService;
@@ -21,4 +22,10 @@ public class QuestionController {
 
         questionService.save(question);
     }
+
+    @GetMapping
+    private List<Question> getAllCategories() {
+        return questionService.getAll();
+    }
+
 }
