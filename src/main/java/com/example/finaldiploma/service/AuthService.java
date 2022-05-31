@@ -40,7 +40,15 @@ public class AuthService {
     private final RefreshTokenService refreshTokenService;
 
     @Transactional
-    public String signup(SignupRequest signupRequest) {
+    public String signup(SignupRequest signupRequest) throws Exception {
+        User userByEmail = userRepository.findByEmail(signupRequest.getEmail());
+        User userByUsername = userRepository.findByUsername(signupRequest.getUsername()).get();
+        if (userByEmail != null) {
+            throw new Exception("user find by email");
+        } else if (userByUsername != null) {
+            throw new Exception("user find by username");
+        }
+
         User user = new User();
         user.setUsername(signupRequest.getUsername());
         user.setEmail(signupRequest.getEmail());

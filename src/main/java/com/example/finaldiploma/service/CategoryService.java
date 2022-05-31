@@ -4,6 +4,7 @@ package com.example.finaldiploma.service;
 import com.example.finaldiploma.model.Category;
 import com.example.finaldiploma.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +34,24 @@ public class CategoryService {
     }
 
 
+    public Category createCategory(Category category) {
+        Category newCategory = new Category();
+        newCategory.setImg(category.getImg());
+        newCategory.setName(category.getName());
 
+        return newCategory;
+    }
 
+    public Category updateCategory(Category category) {
+        Category old = categoryRepository.getById(category.getId());
+        old.setImg(category.getImg());
+        old.setName(category.getName());
+
+        return old;
+    }
+
+    public void deleteCategory(Long id) {
+        categoryRepository.deleteById(id);
+    }
 }
 

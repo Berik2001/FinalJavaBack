@@ -4,11 +4,8 @@ package com.example.finaldiploma.controllers;
 import com.example.finaldiploma.model.Category;
 import com.example.finaldiploma.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,21 @@ public class CategoryController {
         return categoryService.getAllCategories();
     }
 
+    @PostMapping("/categories")
+    private Category createCategory(@RequestBody Category category) {
+        return categoryService.createCategory(category);
+    }
+
+    @PutMapping("/categories")
+    private ResponseEntity<Category> updateCategory(@RequestBody Category category) {
+        Category newCategory = categoryService.updateCategory(category);
+        return ResponseEntity.ok(newCategory);
+    }
+
+    @DeleteMapping("/categories/{id}")
+    private ResponseEntity<String> deleteCategory(@RequestParam("id") Long id) {
+        categoryService.deleteCategory(id);
+        return ResponseEntity.ok("deleted");
+    }
 
 }

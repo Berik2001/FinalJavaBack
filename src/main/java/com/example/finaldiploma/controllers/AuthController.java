@@ -22,7 +22,7 @@ public class AuthController {
     private final RefreshTokenService refreshTokenService;
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody SignupRequest signupRequest) {
+    public ResponseEntity<String> signup(@RequestBody SignupRequest signupRequest) throws Exception {
         authService.signup(signupRequest);
         return new ResponseEntity<>("User registration successful", OK);
     }
