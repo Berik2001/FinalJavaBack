@@ -1,9 +1,12 @@
 package com.example.finaldiploma.controllers;
 
 
+import com.example.finaldiploma.model.Category;
 import com.example.finaldiploma.model.Product;
+import com.example.finaldiploma.model.Question;
 import com.example.finaldiploma.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,5 +22,22 @@ public class ProductController {
     @GetMapping("/{categoryId}")
     private List<Product> findAllProductByCategoryId(@PathVariable Long categoryId) {
         return productService.findAllProductByCategoryId(categoryId);
+    }
+
+    @PostMapping
+    private Product createProduct(@RequestBody Product product) {
+        return productService.createProduct(product);
+    }
+
+    @PutMapping
+    private ResponseEntity<Product> updateProduct(@RequestBody Product product) {
+        Product newProduct = productService.updateProduct(product);
+        return ResponseEntity.ok(newProduct);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    private ResponseEntity<String> deleteProduct(@PathVariable("id") int id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.ok("deleted");
     }
 }

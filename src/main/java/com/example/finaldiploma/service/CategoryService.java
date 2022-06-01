@@ -39,6 +39,8 @@ public class CategoryService {
         newCategory.setImg(category.getImg());
         newCategory.setName(category.getName());
 
+        categoryRepository.save(newCategory);
+
         return newCategory;
     }
 
@@ -47,6 +49,7 @@ public class CategoryService {
         old.setImg(category.getImg());
         old.setName(category.getName());
 
+        categoryRepository.save(old);
         return old;
     }
 

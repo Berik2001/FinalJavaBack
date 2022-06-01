@@ -5,10 +5,8 @@ import com.example.finaldiploma.model.Review;
 import com.example.finaldiploma.service.CategoryService;
 import com.example.finaldiploma.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,4 +21,11 @@ public class ReviewController {
     private List<Review> getAllCategories() {
         return reviewService.getAllReviews();
     }
+
+    @PutMapping
+    private ResponseEntity<Review> updateReview(@RequestBody Review review) {
+        Review newReview = reviewService.updateReview(review);
+        return ResponseEntity.ok(newReview);
+    }
+
 }
