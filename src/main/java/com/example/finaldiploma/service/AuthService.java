@@ -101,6 +101,10 @@ public class AuthService {
     public AuthenticationResponse login(AuthRequest authRequest) {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(),
                 authRequest.getPassword()));
+        String role = userRepository.findByUsername(authRequest.getUsername()).get().getRole();
+        if (role == null) {
+            role = "customer";
+        }
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         String token = jwtProvider.generateToken(authenticate);
         return AuthenticationResponse.builder()
@@ -108,6 +112,7 @@ public class AuthService {
                 .refreshToken(refreshTokenService.generateRefreshToken().getToken())
                 .expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
                 .username(authRequest.getUsername())
+                .role(role)
                 .build();
     }
 
