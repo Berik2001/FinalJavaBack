@@ -19,11 +19,15 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/{categoryId}")
-    private List<Product> findAllProductByCategoryId(@PathVariable Long categoryId) {
-        return productService.findAllProductByCategoryId(categoryId);
+    @GetMapping("/{id}")
+    private List<Product> findAllProductByCategoryId(@PathVariable("id") Long id) {
+        return productService.findAllProductByCategoryId(id);
     }
 
+    @GetMapping
+    private List<Product> getAll() {
+        return productService.getAll();
+    }
     @PostMapping
     private Product createProduct(@RequestBody Product product) {
         return productService.createProduct(product);
