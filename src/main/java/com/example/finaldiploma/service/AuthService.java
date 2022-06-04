@@ -42,7 +42,7 @@ public class AuthService {
     @Transactional
     public String signup(SignupRequest signupRequest) throws Exception {
         User userByEmail = userRepository.findByEmail(signupRequest.getEmail());
-        User userByUsername = userRepository.findByUsername(signupRequest.getUsername()).get();
+        User userByUsername = userRepository.findByUsername(signupRequest.getUsername()).stream().findFirst().orElse(null);
         if (userByEmail != null) {
             throw new Exception("user find by email");
         } else if (userByUsername != null) {
