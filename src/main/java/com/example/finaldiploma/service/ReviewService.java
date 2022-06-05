@@ -18,6 +18,7 @@ public class ReviewService {
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
     }
+
     public Review updateReview(Review review) {
         Review old = reviewRepository.getById(review.getId());
         old.setReview(review.getReview());
@@ -26,5 +27,19 @@ public class ReviewService {
 
         reviewRepository.save(old);
         return old;
+    }
+
+    public Review createReview(Review review) {
+        Review newReview = new Review();
+        if (review.getReview() != null) {
+            newReview.setReview(review.getReview());
+        }else {
+            newReview.setReview(review.getReviewUsername());
+        }
+        newReview.setReviewDesc(review.getReviewDesc());
+        newReview.setReviewUsername(review.getReviewUsername());
+
+        reviewRepository.save(newReview);
+        return newReview;
     }
 }

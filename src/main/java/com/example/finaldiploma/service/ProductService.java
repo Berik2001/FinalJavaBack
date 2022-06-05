@@ -33,6 +33,7 @@ public class ProductService {
         old.setDescription(product.getDescription());
         old.setImage(product.getImage());
         old.setPrice(product.getPrice());
+        old.setProductPrice(product.getProductPrice());
 
         productRepository.save(old);
         return old;
@@ -45,6 +46,8 @@ public class ProductService {
         newProduct.setImage(product.getImage());
         newProduct.setDescription(product.getDescription());
         newProduct.setCategory(categoryRepository.getById(product.getCategory().getId()));
+        newProduct.setProductPrice(product.getProductPrice());
+
 
         productRepository.save(newProduct);
         return newProduct;

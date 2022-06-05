@@ -29,4 +29,6 @@ public class Product {
     @ManyToOne()
 
     private Category category;
+    @Column(nullable = true,name = "product_price")
+    private double productPrice;
 }

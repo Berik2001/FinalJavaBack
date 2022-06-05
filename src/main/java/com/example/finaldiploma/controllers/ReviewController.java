@@ -1,6 +1,8 @@
 package com.example.finaldiploma.controllers;
 
+import com.example.finaldiploma.dto.OrderRequest;
 import com.example.finaldiploma.model.Category;
+import com.example.finaldiploma.model.Order;
 import com.example.finaldiploma.model.Review;
 import com.example.finaldiploma.service.CategoryService;
 import com.example.finaldiploma.service.ReviewService;
@@ -20,6 +22,11 @@ public class ReviewController {
     @GetMapping("/read")
     private List<Review> getAllCategories() {
         return reviewService.getAllReviews();
+    }
+
+    @PostMapping("/create")
+    private Review createReview(@RequestBody Review review) {
+        return reviewService.createReview(review);
     }
 
     @PutMapping
