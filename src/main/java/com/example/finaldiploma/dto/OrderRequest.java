@@ -17,5 +17,9 @@ public class OrderRequest {
 
     private String username;
 
+    private String address;
+
+    private String phone;
+
 
 }

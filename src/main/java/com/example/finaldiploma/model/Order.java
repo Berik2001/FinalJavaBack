@@ -30,4 +30,8 @@ public class Order {
 
     private String username;
 
+    private String address;
+
+    private String phone;
+
 }

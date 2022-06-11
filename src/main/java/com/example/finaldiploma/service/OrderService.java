@@ -29,6 +29,8 @@ public class OrderService {
         old.setEndDate(Date.valueOf(endDate));
         old.setTotalPrice(order.getTotalPrice());
         old.setUsername(order.getUsername());
+        old.setAddress(order.getAddress());
+        old.setPhone(order.getPhone());
 
         orderRepository.save(old);
         return old;
@@ -43,6 +45,8 @@ public class OrderService {
         newOrder.setEndDate(Date.valueOf(endDate));
         newOrder.setTotalPrice(order.getTotalPrice());
         newOrder.setUsername(order.getUsername());
+        newOrder.setAddress(order.getAddress());
+        newOrder.setPhone(order.getPhone());
 
         orderRepository.save(newOrder);
         return newOrder;
