@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: C:\Users\Berik\Desktop\FinalJune\DiplomaBackend\target\Final
+ Diploma-0.0.1-SNAPSHOT.jar
+

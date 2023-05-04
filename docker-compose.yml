@@ -1,0 +1,28 @@
+version: '3'
+services:
+  postgres:
+    image: 'postgres:13'
+    container_name: 'java-postgres'
+    environment:
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=123'
+      - 'POSTGRES_DB=diploma'
+    ports:
+       - "5433:5432"
+  app:
+    build: ./
+    depends_on:
+      - postgres
+    container_name: 'java-app'
+    ports:
+      - "8080:8080"
+  react:
+      image: 'node:14-alpine'
+      container_name: 'react-app'
+      depends_on:
+        - app
+      build: "C:/Users/Berik/Music/DiplomaFront"
+      ports:
+        - "3000:3000"
+      stdin_open: true
+      tty: true
